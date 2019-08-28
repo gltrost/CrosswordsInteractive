@@ -1,0 +1,114 @@
+<html>	
+	<style>
+	.board { border:1px solid black; 
+			width: {{Width *2}}px; 
+			height:{{Height*2}}px; 
+			margin:0 auto;}
+
+		/*This is a test:*/
+		#item1-1:valid ~ #item1-2:valid ~ #item1-3:valid ~ #item1-4:valid ~ .crossword-board--highlight .crossword-board__item-highlight--across-1 
+		{opacity: 1;}
+
+		.grid__item {
+			  border: 1px solid #000000;
+			}
+		.grid--2 {
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+
+		  .grid__item--1 {
+		    grid-column: 1/7;
+		    background: #ffff74;
+		  }
+		  .grid__item--2 {
+		    grid-column: 4/9;
+		    background: #9aff67;
+		  }
+		}
+		#item1-1:active ~ .crossword-clues .crossword-clues__list-item--across-1,
+#item1-1:focus ~ .crossword-clues .crossword-clues__list-item--across-1,
+#item1-1:hover ~ .crossword-clues .crossword-clues__list-item--across-1 {
+  background: #ffff74;
+}
+
+	</style>
+
+	<head>
+		<!--<link rel=stylesheet type="text/css" href="CW.css">-->
+		<title>Crossword 1</title>
+		<!-- <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/CW.css') }}"> -->
+	</head>
+
+<body>
+
+
+<div class="crossword-board-container">
+
+  <div class="crossword-board">
+
+	<h1> {{title}} - {{author}} </h1>
+		<div class=board style="width:{{listSize * 2}}px;height:{{listSize * 2}}px;">
+			{% for i in range(0,listSize) %}
+				<style> 
+				.btn {BORDER: 1px solid;  COLOR: black; width: {{Width *2}}px; height:{{Height*2}}px; border: 1px solid black;padding: 0;margin: 0;float: left; background-color:white;}
+				.btnBlank {BORDER: 1px solid;  COLOR: black; width: {{Width *2 -2}}px; height:{{Height *2 -2}}px; border: 1px solid black;padding: 0;margin: 0;float: left; background-color:black;}
+				</style>
+				{% if solutions[i] != '.' %}
+					<input class=btn id="item{{i // Height + 1}}-{{i % Width + 1}}"  type="text" minlength="1" maxlength="1"> </input>
+				{% else %}
+					<div class=btnBlank id="item{{i // Height + 1}}-{{i % Width + 1}}"> </div>
+				{% endif %}
+			{% endfor %}
+		</div>
+			
+    <!-- input elements go here. Uses CSS Grid as its layout -->
+
+    <div class="crossword-board crossword-board--highlight crossword-board--highlight--across">
+      <!-- highlights for valid 'across' answers go here. Uses CSS Grid as its layout -->
+    </div>
+
+    <div class="crossword-board crossword-board--highlight crossword-board--highlight-down">
+      <!-- highlights for valid 'down' answers go here. Uses CSS Grid as its layout -->
+    </div>
+
+    <div class="crossword-board crossword-board--labels">
+      <!-- row and column number labels go here. Uses CSS Grid as its layout -->
+    </div>
+
+    <div class="crossword-clues">
+
+      <dl class="crossword-clues__list crossword-clues__list--across">
+			<h1> Across Clues: </h1>
+			<ol id="acrossList">
+		    	<!-- across-clues will end up here -->
+		    	{% for x in across %}
+		    	<li> {{ x['clue'] }} </li>
+		    	{% endfor %}
+			</ol>       
+	  </dl>
+
+      <dl class="crossword-clues__list crossword-clues__list--down">
+       		<h1> Down Clues: </h1>
+			<ol  id="downList">
+			    <!-- down-clues will end up here -->
+			    {% for x in down %}
+			    <li> {{ x['clue'] }} </li>
+			    {% endfor %}
+			</ol>
+      </dl>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- 		<input type="submit" value="Submit" name="submit" class="submit" id="submit"> Submit </input>
+		</form> -->
+	</body>
+
+	<footer>{{copyright}}</footer>
+  <script type="/Users/gtrost/Documents/CW/templates/js/jquery-3.4.1.js"></script>
+  <script src="./js/CW.js"></script>
+</html>
