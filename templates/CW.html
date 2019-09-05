@@ -1,5 +1,17 @@
+<!-- THE FOLLOWING VALUES ORIGINATE FROM applications.py:
+methods called from puz.py :
+   title: title of crossword
+   across: across clues
+   down: down clues
+   Height: height of board
+   Width: width of board
+   solutions: list of solutions
+   author: creator of puzzle
+   copyright: any copyright information -->
+
 <html>	
 	<style>
+	/*Dimensions and specs of the crossword board: */
 	.board { border:1px solid black; 
 			width: {{Width *2}}px; 
 			height:{{Height*2}}px; 
@@ -27,9 +39,9 @@
 		  }
 		}
 		#item1-1:active ~ .crossword-clues .crossword-clues__list-item--across-1,
-#item1-1:focus ~ .crossword-clues .crossword-clues__list-item--across-1,
-#item1-1:hover ~ .crossword-clues .crossword-clues__list-item--across-1 {
-  background: #ffff74;
+		#item1-1:focus ~ .crossword-clues .crossword-clues__list-item--across-1,
+		#item1-1:hover ~ .crossword-clues .crossword-clues__list-item--across-1 {
+  		background: #ffff74;
 }
 
 	</style>
@@ -42,13 +54,12 @@
 
 <body>
 
-
+<!-- crossword-board-container wraps the crossword-board in a container -->
 <div class="crossword-board-container">
-
   <div class="crossword-board">
-
 	<h1> {{title}} - {{author}} </h1>
 		<div class=board style="width:{{listSize * 2}}px;height:{{listSize * 2}}px;">
+			<!-- CREATE EACH BOX IN PUZZLE WITH FOR-LOOP AND listSize  -->
 			{% for i in range(0,listSize) %}
 				<style> 
 				.btn {BORDER: 1px solid;  COLOR: black; width: {{Width *2}}px; height:{{Height*2}}px; border: 1px solid black;padding: 0;margin: 0;float: left; background-color:white;}
@@ -62,6 +73,8 @@
 			{% endfor %}
 		</div>
 			
+
+
     <!-- input elements go here. Uses CSS Grid as its layout -->
 
     <div class="crossword-board crossword-board--highlight crossword-board--highlight--across">
@@ -76,8 +89,13 @@
       <!-- row and column number labels go here. Uses CSS Grid as its layout -->
     </div>
 
+
+
+
+    <!-- CLUES OF THE CROSSWORD PUZZLE:  -->
     <div class="crossword-clues">
 
+      <!-- ACROSS CLUES	 -->
       <dl class="crossword-clues__list crossword-clues__list--across">
 			<h1> Across Clues: </h1>
 			<ol id="acrossList">
@@ -88,6 +106,8 @@
 			</ol>       
 	  </dl>
 
+
+	  <!-- DOWN CLUES -->
       <dl class="crossword-clues__list crossword-clues__list--down">
        		<h1> Down Clues: </h1>
 			<ol  id="downList">
@@ -104,8 +124,6 @@
 
 </div>
 
-<!-- 		<input type="submit" value="Submit" name="submit" class="submit" id="submit"> Submit </input>
-		</form> -->
 	</body>
 
 	<footer>{{copyright}}</footer>
