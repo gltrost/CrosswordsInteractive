@@ -2,6 +2,7 @@
 templates/js/
 templates/puzpy-master/
 templates/.DS_Store
+templates/backupCW.html
 __pycache__/
 CW.css
 puz.py
