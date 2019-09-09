@@ -1,4 +1,7 @@
 # Don't track content of these folders:
+templates/js/
+templates/puzpy-master/
+templates/.DS_Store
 __pycache__/
 CW.css
 puz.py
@@ -8,6 +11,12 @@ Modules/
 setup.py
 application.pyc
 mine.py
-Test2.py
+Tests2.py
 tests.py
 *.pyc
+*.rst
+*.ini
+*.cfg
+*.in
+LICENSE
+.DS_Store
