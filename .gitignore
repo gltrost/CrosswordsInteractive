@@ -1,0 +1,18 @@
+# Don't track content of these folders
+/__pycache__
+setup.cfg
+puz.pyc
+puz.py
+/testfiles
+/venv
+/Modules
+/LICENCE
+MANIFEST.in
+setup.py
+application.py
+application.pyc
+mine.py
+Test2.py
+tests.py
+tox.ini
+*.pyc
