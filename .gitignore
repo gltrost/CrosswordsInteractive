@@ -13,6 +13,7 @@ application.pyc
 mine.py
 Tests2.py
 tests.py
+mine.puz
 *.pyc
 *.rst
 *.ini
