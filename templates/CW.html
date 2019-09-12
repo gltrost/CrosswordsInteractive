@@ -11,19 +11,78 @@ methods called from puz.py :
 
 <html>	
 	<style>
-	/*Dimensions and specs of the crossword board: */
-	.board { border:1px solid black; 
-			width: {{Width *2}}px; 
-			height:{{Height*2}}px; 
-			margin:0 auto;}
+		/*Title specs*/
+		#title{
+			font-size: 25pt;
+		}
+
+		/*Dimensions and specs of the crossword board: */
+		.board { border:1px solid black; 
+				width: {{Width *2}}px; 
+				height:{{Height*2}}px; 
+				margin:0 auto;
+				float: left;
+ 				}
+
+		/*Styling for the individual square inputs: */
+		{% for i in range(0,listSize) %}
+		#item{{i // Height + 1}}-{{i % Width + 1}}{
+			font-size:18pt;
+			text-align: center;
+			}
+		{% endfor %}
+
+
+		/*Test 2*/
+		.crossword-clues {
+			position: absolute;
+			top: 0;
+			/*change these*/
+			left: 500;
+			width: 1000;
+		}
+		.crossword-clues__list {
+			margin: 0 0 0 60px;
+			padding: 0;
+			display: inline-block;
+			vertical-align: top;
+		}
+		.crossword-clues__list-title {
+			font-weight: bold;
+			padding: 4px;
+		}
+		.crossword-clues__list-item {
+			margin: 0;
+			padding: 4px;
+
+			&:before {
+				content: attr(data-number) '. ';
+			}
+		}
+		/*End test 2*/
+
 
 		/*This is a test:*/
+
+		/*Testing first clue and answers */
+		.crossword-board--highlight {
+		position: absolute;
+		z-index: 50;}
+
+		.crossword-board__item-highlight {
+		background: $color-valid-item;
+		display: grid;
+		opacity: 1;
+		transition: opacity 0.3s linear; }
+
+
 		#item1-1:valid ~ #item1-2:valid ~ #item1-3:valid ~ #item1-4:valid ~ .crossword-board--highlight .crossword-board__item-highlight--across-1 
 		{opacity: 1;}
 
 		.grid__item {
 			  border: 1px solid #000000;
 			}
+
 		.grid--2 {
 		  position: absolute;
 		  top: 0;
@@ -42,13 +101,16 @@ methods called from puz.py :
 		#item1-1:focus ~ .crossword-clues .crossword-clues__list-item--across-1,
 		#item1-1:hover ~ .crossword-clues .crossword-clues__list-item--across-1 {
   		background: #ffff74;
+
+  		/*end test of first clue and answers*/
+
 }
 
 	</style>
 
 	<head>
 		<!--<link rel=stylesheet type="text/css" href="CW.css">-->
-		<title>Crossword 1</title>
+		<title> {{title}} </title>
 		<!-- <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/CW.css') }}"> -->
 	</head>
 
@@ -56,8 +118,10 @@ methods called from puz.py :
 
 <!-- crossword-board-container wraps the crossword-board in a container -->
 <div class="crossword-board-container">
+	
   <div class="crossword-board">
-	<h1> {{title}} - {{author}} </h1>
+	<h1 id="title"> {{title}} </h1>
+	<h1 id="title"> {{author}} </h1>
 		<div class=board style="width:{{listSize * 2}}px;height:{{listSize * 2}}px;">
 			<!-- CREATE EACH BOX IN PUZZLE WITH FOR-LOOP AND listSize  -->
 			{% for i in range(0,listSize) %}
@@ -66,9 +130,13 @@ methods called from puz.py :
 				.btnBlank {BORDER: 1px solid;  COLOR: black; width: {{Width *2 -2}}px; height:{{Height *2 -2}}px; border: 1px solid black;padding: 0;margin: 0;float: left; background-color:black;}
 				</style>
 				{% if solutions[i] != '.' %}
-					<input class=btn id="item{{i // Height + 1}}-{{i % Width + 1}}"  type="text" minlength="1" maxlength="1"> </input>
+					<!-- 
+					- The "item"-prefix is used to identify each square.
+					- minlength and maxlength are for the lengths of legal text-entries for squares (black squares don't have entries).
+				    - "required" specifies that the box must be filled in before submitting the form-->
+					<input class=btn id="item{{i // Height + 1}}-{{i % Width + 1}}"  type="text" minlength="1" maxlength="1" required="required" size="30" type="text"> </input>
 				{% else %}
-					<div class=btnBlank id="item{{i // Height + 1}}-{{i % Width + 1}}"> </div>
+					<div class=btnBlank id="item{{i // Height + 1}}-{{i % Width + 1}}" required="required"> </div>
 				{% endif %}
 			{% endfor %}
 		</div>
@@ -126,7 +194,9 @@ methods called from puz.py :
 
 	</body>
 
-	<footer>{{copyright}}</footer>
   <script type="/Users/gtrost/Documents/CW/templates/js/jquery-3.4.1.js"></script>
   <script src="./js/CW.js"></script>
+
+  <!-- <footer id="copyright">{{copyright}}</footer> -->
+
 </html>
