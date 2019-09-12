@@ -5,7 +5,6 @@ templates/.DS_Store
 templates/backupCW.html
 __pycache__/
 CW.css
-testfiles/
 venv/
 Modules/
 setup.py

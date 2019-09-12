@@ -15,7 +15,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
-p = puz.read('testfiles/washpost.puz')
+p = puz.read('testfiles/15by15.puz')
 numbering = p.clue_numbering()
 
 app = Flask(__name__)
@@ -30,6 +30,12 @@ app = Flask(__name__)
 #    author: creator of puzzle
 #    copyright: any copyright information
 
+def adjuster(x):
+   if (x > 20): return 1.5
+   elif (x > 10): return 2.5
+   else: return 3.5
+
+
 @app.route('/')
 def index():
    return render_template('CW.html', title=p.title ,marks = 10, 
@@ -40,8 +46,10 @@ def index():
    							listSize = p.height * p.width,
    							solutions = p.solution,
    							author = p.author,
-   							copyright = p.copyright)	
+   							copyright = p.copyright,
+                        adjust = adjuster(p.width))	
 
 
 if __name__ == '__main__':
    app.run(debug = True)
+

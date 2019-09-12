@@ -13,13 +13,14 @@ methods called from puz.py :
 	<style>
 		/*Title specs*/
 		#title{
-			font-size: 25pt;
+			font-size: 20pt;
+			font-family:Tahoma, Geneva, sans-serif;
 		}
 
+
 		/*Dimensions and specs of the crossword board: */
-		.board { border:1px solid black; 
-				width: {{Width *2}}px; 
-				height:{{Height*2}}px; 
+		.crossword-board-container .crossword-board .board{ 
+				border:1px solid black; 
 				margin:0 auto;
 				float: left;
  				}
@@ -28,37 +29,57 @@ methods called from puz.py :
 		{% for i in range(0,listSize) %}
 		#item{{i // Height + 1}}-{{i % Width + 1}}{
 			font-size:18pt;
+			text-transform: uppercase;
 			text-align: center;
+			font-family:Tahoma, Geneva, sans-serif;
 			}
 		{% endfor %}
 
 
 		/*Test 2*/
-		.crossword-clues {
-			position: absolute;
-			top: 0;
-			/*change these*/
-			left: 500;
-			width: 1000;
+
+		#clue-title{
+			border-bottom: 1px solid black;
+			font-size: 18pt;
 		}
+
+		.crossword-clues__list--across {
+		  float: left;
+		  top : 0px;
+		  right: 20px;
+		  width: 300px;
+		  padding: 200px;
+		  font-family:Tahoma, Geneva, sans-serif;
+		}
+
+		.crossword-clues__list--down{
+		  float: left;
+		  top : 0px;
+		  right: 20px;
+		  width: 300px;
+ 		  padding: 200px;
+ 		  font-family:Tahoma, Geneva, sans-serif;
+		}
+
 		.crossword-clues__list {
-			margin: 0 0 0 60px;
-			padding: 0;
+			margin: 0 0 0 0px;
+			padding: 20;
 			display: inline-block;
 			vertical-align: top;
 		}
 		.crossword-clues__list-title {
 			font-weight: bold;
-			padding: 4px;
+			padding: 20px;
 		}
 		.crossword-clues__list-item {
 			margin: 0;
-			padding: 4px;
+			padding: 20px;
 
 			&:before {
 				content: attr(data-number) '. ';
 			}
 		}
+
 		/*End test 2*/
 
 
@@ -119,22 +140,23 @@ methods called from puz.py :
 <!-- crossword-board-container wraps the crossword-board in a container -->
 <div class="crossword-board-container">
 	
-  <div class="crossword-board">
-	<h1 id="title"> {{title}} </h1>
-	<h1 id="title"> {{author}} </h1>
-		<div class=board style="width:{{listSize * 2}}px;height:{{listSize * 2}}px;">
+    <div class="crossword-board">
+		<h1 id="title"> {{title}} </h1>
+		<h1 id="title"> {{author}} </h1>
+		
+		<div class=board style="width:{{listSize * adjust}}px;height:{{listSize * adjust}}px;">
 			<!-- CREATE EACH BOX IN PUZZLE WITH FOR-LOOP AND listSize  -->
 			{% for i in range(0,listSize) %}
 				<style> 
-				.btn {BORDER: 1px solid;  COLOR: black; width: {{Width *2}}px; height:{{Height*2}}px; border: 1px solid black;padding: 0;margin: 0;float: left; background-color:white;}
-				.btnBlank {BORDER: 1px solid;  COLOR: black; width: {{Width *2 -2}}px; height:{{Height *2 -2}}px; border: 1px solid black;padding: 0;margin: 0;float: left; background-color:black;}
+				.btn {BORDER: 1px solid;  COLOR: black; width: {{Width *adjust}}px; height:{{Height*adjust}}px; border: 1px solid black;padding: 0;margin: 0;float: left; background-color:white;}
+				.btnBlank {BORDER: 1px solid;  COLOR: black; width: {{Width *adjust -2}}px; height:{{Height *adjust -2}}px; border: 1px solid black;padding: 0;margin: 0;float: left; background-color:black;}
 				</style>
 				{% if solutions[i] != '.' %}
 					<!-- 
 					- The "item"-prefix is used to identify each square.
 					- minlength and maxlength are for the lengths of legal text-entries for squares (black squares don't have entries).
 				    - "required" specifies that the box must be filled in before submitting the form-->
-					<input class=btn id="item{{i // Height + 1}}-{{i % Width + 1}}"  type="text" minlength="1" maxlength="1" required="required" size="30" type="text"> </input>
+					<input class=btn id="item{{i // Height + 1}}-{{i % Width + 1}}"  type="text" minlength="1" maxlength="1" required="required" type="text"> </input>
 				{% else %}
 					<div class=btnBlank id="item{{i // Height + 1}}-{{i % Width + 1}}" required="required"> </div>
 				{% endif %}
@@ -145,50 +167,50 @@ methods called from puz.py :
 
     <!-- input elements go here. Uses CSS Grid as its layout -->
 
-    <div class="crossword-board crossword-board--highlight crossword-board--highlight--across">
-      <!-- highlights for valid 'across' answers go here. Uses CSS Grid as its layout -->
-    </div>
+	    <div class="crossword-board crossword-board--highlight crossword-board--highlight--across">
+	      <!-- highlights for valid 'across' answers go here. Uses CSS Grid as its layout -->
+	    </div>
 
-    <div class="crossword-board crossword-board--highlight crossword-board--highlight-down">
-      <!-- highlights for valid 'down' answers go here. Uses CSS Grid as its layout -->
-    </div>
+	    <div class="crossword-board crossword-board--highlight crossword-board--highlight-down">
+	      <!-- highlights for valid 'down' answers go here. Uses CSS Grid as its layout -->
+	    </div>
 
-    <div class="crossword-board crossword-board--labels">
-      <!-- row and column number labels go here. Uses CSS Grid as its layout -->
-    </div>
+	    <div class="crossword-board crossword-board--labels">
+	      <!-- row and column number labels go here. Uses CSS Grid as its layout -->
+	    </div>
 
 
 
 
     <!-- CLUES OF THE CROSSWORD PUZZLE:  -->
-    <div class="crossword-clues">
+	    <div class="crossword-clues">
 
-      <!-- ACROSS CLUES	 -->
-      <dl class="crossword-clues__list crossword-clues__list--across">
-			<h1> Across Clues: </h1>
-			<ol id="acrossList">
-		    	<!-- across-clues will end up here -->
-		    	{% for x in across %}
-		    	<li> {{ x['clue'] }} </li>
-		    	{% endfor %}
-			</ol>       
-	  </dl>
+	      	<!-- ACROSS CLUES	 -->
+	      	<dl class="crossword-clues__list crossword-clues__list--across">
+				<h1 id="clue-title"> ACROSS </h1>
+				<ol id="acrossList">
+			    	<!-- across-clues will end up here -->
+			    	{% for x in across %}
+			    	<li> {{ x['clue'] }} </li>
+			    	{% endfor %}
+				</ol>       
+		  	</dl>
 
 
-	  <!-- DOWN CLUES -->
-      <dl class="crossword-clues__list crossword-clues__list--down">
-       		<h1> Down Clues: </h1>
-			<ol  id="downList">
-			    <!-- down-clues will end up here -->
-			    {% for x in down %}
-			    <li> {{ x['clue'] }} </li>
-			    {% endfor %}
-			</ol>
-      </dl>
+		  	<!-- DOWN CLUES -->
+	      	<dl class="crossword-clues__list crossword-clues__list--down">
+	       		<h1 id="clue-title"> DOWN </h1>
+				<ol  id="downList">
+				    <!-- down-clues will end up here -->
+				    {% for x in down %}
+				    <li> {{ x['clue'] }} </li>
+				    {% endfor %}
+				</ol>
+	      	</dl>
 
-    </div>
+	    </div>
 
-  </div>
+  	</div>
 
 </div>
 
