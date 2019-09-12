@@ -8,3 +8,6 @@ Important files:
   applications.py : The main python application folder, linked to puz.py
   puz.py : Crossword parser, taken from alexdef/puzpy, found here https://github.com/alexdej/puzpy/blob/master/puz.py
   CW.html : main html page
+
+Example: 
+![](images/readmePhoto.png)
