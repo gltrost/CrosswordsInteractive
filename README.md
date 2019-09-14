@@ -10,7 +10,7 @@ It will become an interactive crossword site where multiple people may fill in a
   3. puz.py : Crossword parser, taken from alexdef/puzpy, found here https://github.com/alexdej/puzpy/blob/master/puz.py
   CW.html : main html page
 
-**Example: **
+**Example:**
 ![](images/readmePhoto.png)
 
 **Testing:** 
