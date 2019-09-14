@@ -11,133 +11,183 @@ methods called from puz.py :
 
 <html>	
 	<style>
-		/*Title specs*/
-		#title{
-			font-size: 20pt;
-			font-family:Tahoma, Geneva, sans-serif;
-		}
+		/*TITLE SPECS*/
+			#title{
+				font-size: 20pt;
+				font-family:Tahoma, Geneva, sans-serif;
+				}
 
+		/*CONTAINER SPECS*/
+			.crossword-board-container {			
+				background: #ffffff;
+				}
 
-		/*Dimensions and specs of the crossword board: */
-		.crossword-board-container .crossword-board .board{ 
+		/* BOARD SPECS */ 
+			.board{ 
+				/*float: left;*/
 				border:1px solid black; 
-				margin:0 auto;
-				float: left;
+			 	background: transparent;  
+				/*margin:0 auto;*/
+				/*float: left;*/
+				/*display: inline-block;*/
+				z-index: 1;  
  				}
 
-		/*Styling for the individual square inputs: */
-		{% for i in range(0,listSize) %}
-		#item{{i // Height + 1}}-{{i % Width + 1}}{
-			font-size:18pt;
-			text-transform: uppercase;
-			text-align: center;
-			font-family:Tahoma, Geneva, sans-serif;
-			}
-		{% endfor %}
+			/*Styling for the individual square inputs: */
+			.crossword-board__item {
+				z-index: 100;  
+				background: transparent;	
+				font-size:15pt;
+				text-transform: uppercase;
+				text-align: center;
+				font-family:Tahoma, Geneva, sans-serif
+				}
+			
+			.crossword-board__item:active{
+				background:  #ffff74;
+				border: 1px solid #000000;
+				outline: 1px solid #000000;
+				}	
+
+			.crossword-board__item:focus {
+				background: #ffff74;
+				border: 1px solid #000000;
+				outline: 1px solid #000000;
+				}	
 
 
-		/*Test 2*/
+				
 
-		#clue-title{
-			border-bottom: 1px solid black;
-			font-size: 18pt;
-		}
-
-		.crossword-clues__list--across {
-		  float: left;
-		  top : 0px;
-		  right: 20px;
-		  width: 300px;
-		  padding: 200px;
-		  font-family:Tahoma, Geneva, sans-serif;
-		}
-
-		.crossword-clues__list--down{
-		  float: left;
-		  top : 0px;
-		  right: 20px;
-		  width: 300px;
- 		  padding: 200px;
- 		  font-family:Tahoma, Geneva, sans-serif;
-		}
-
-		.crossword-clues__list {
-			margin: 0 0 0 0px;
-			padding: 20;
-			display: inline-block;
-			vertical-align: top;
-		}
-		.crossword-clues__list-title {
-			font-weight: bold;
-			padding: 20px;
-		}
-		.crossword-clues__list-item {
-			margin: 0;
-			padding: 20px;
-
-			&:before {
-				content: attr(data-number) '. ';
-			}
-		}
-
-		/*End test 2*/
-
-
-		/*This is a test:*/
-
-		/*Testing first clue and answers */
-		.crossword-board--highlight {
-		position: absolute;
-		z-index: 50;}
-
-		.crossword-board__item-highlight {
-		background: $color-valid-item;
-		display: grid;
-		opacity: 1;
-		transition: opacity 0.3s linear; }
-
-
-		#item1-1:valid ~ #item1-2:valid ~ #item1-3:valid ~ #item1-4:valid ~ .crossword-board--highlight .crossword-board__item-highlight--across-1 
-		{opacity: 1;}
-
-		.grid__item {
-			  border: 1px solid #000000;
+		/*HIGHLIGHT AND LABEL SPECS*/
+			.crossword-board--highlight {
+			position: absolute;
+			z-index: 50;
 			}
 
-		.grid--2 {
-		  position: absolute;
-		  top: 0;
-		  left: 0;
+			.crossword-board__item-highlight {
+			background: #9aff67;
+			display: grid;
+			opacity: 1;
+			transition: opacity 0.3s linear; 
+			}
 
-		  .grid__item--1 {
-		    grid-column: 1/7;
-		    background: #ffff74;
-		  }
-		  .grid__item--2 {
-		    grid-column: 4/9;
-		    background: #9aff67;
-		  }
-		}
-		#item1-1:active ~ .crossword-clues .crossword-clues__list-item--across-1,
-		#item1-1:focus ~ .crossword-clues .crossword-clues__list-item--across-1,
-		#item1-1:hover ~ .crossword-clues .crossword-clues__list-item--across-1 {
-  		background: #ffff74;
+			.crossword-board__item-highlight--across-1 {
+			grid-column: 1/7;
+			}
 
-  		/*end test of first clue and answers*/
+	  		#item1-1:valid
+			~ #item1-2:valid
+			~ #item1-3:valid
+			~ #item1-4:valid
+			~ #item1-5:valid
+			~ #item1-6:valid
+			~ .crossword-board--highlight
+			.crossword-board__item-highlight--across-1 {
+			opacity: 1;
+			}
+ 
+		
+		/*CLUE SPECS*/
 
-}
+			#checkvaliditems:checked
+				~ .crossword-board-container
+				.crossword-board__item:valid {
+				background: #9aff67;
+				}
+
+			#clue-title{
+				border-bottom: 1px solid black;
+				font-size: 18pt;
+				}
+
+			.crossword-clues{
+				/*display: inline-block;*/
+/*				top : 0px;
+				right: 20px;
+				width: 300px;
+				padding: 25px;*/
+				font-family:Tahoma, Geneva, sans-serif;
+				}
+
+			.crossword-clues__list  {
+				/*float: left;*/
+/*				top : 10px;
+				right: 10px;
+				width: 300px;*/				
+				font-family:Tahoma, Geneva, sans-serif;
+				}
+
+			.crossword-clues__list--across {
+				/*float:left;*/
+				/*display: inline-block;*/
+				left: 700px;
+				position: absolute;
+				}
+
+			.crossword-clues__list--down {
+				/*display: inline-block;*/
+				left: 1100px;
+				position: absolute;
+				}					
+	 
+			.crossword-clues__list-title {
+				font-weight: bold;
+				padding: 2px;
+				}
+			.crossword-clues__list-item {
+				margin: 0;
+				}
+			.crossword-clues__list-item:before {
+					content: attr(data-number) '. ';
+				}
+
+
+			{% for i in range(0,listSize) %}
+ 			#item{{i // Height + 1}}-{{i % Width + 1}}:active  ~ .crossword-clues .crossword-clues__list-item--across-1,
+			#item{{i // Height + 1}}-{{i % Width + 1}}:focus  ~ .crossword-clues .crossword-clues__list-item--across-1,
+			#item{{i // Height + 1}}-{{i % Width + 1}}:hover  ~ .crossword-clues .crossword-clues__list-item--across-1 {
+	  		background-color: #ffff74;}
+	  		{% endfor %}
+
+			#item1-1:valid
+			~ #item1-2:valid
+			~ #item1-3:valid
+			~ #item1-4:valid
+			~ #item1-5:valid
+			~ #item1-6:valid
+			~ .crossword-clues
+			.crossword-clues__list-item--across-1 {
+			background-color:  #9aff67;
+			}
+
+			#checker {
+				font-size: 15pt;
+				font-family:Tahoma, Geneva, sans-serif;
+			}
+
+			[for="checkvaliditems"] {
+				padding: 10px 10px 10px 40px;
+				margin: 20px;
+				display: inline-block;
+				background: #9aff67;
+				cursor: pointer;
+			}
 
 	</style>
 
 	<head>
 		<!--<link rel=stylesheet type="text/css" href="CW.css">-->
 		<title> {{title}} </title>
+		<!-- <link rel="stylesheet" href="{{ url_for('static', filename='assets/scss/CW.scss') }}">		 -->
 		<!-- <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/CW.css') }}"> -->
 	</head>
 
 <body>
 
 <!-- crossword-board-container wraps the crossword-board in a container -->
+<input type="checkbox" name="checkvaliditems" id="checkvaliditems" />
+<label id="checker" for="checkvaliditems">Check for valid squares</label>
+
 <div class="crossword-board-container">
 	
     <div class="crossword-board">
@@ -148,76 +198,73 @@ methods called from puz.py :
 			<!-- CREATE EACH BOX IN PUZZLE WITH FOR-LOOP AND listSize  -->
 			{% for i in range(0,listSize) %}
 				<style> 
-				.btn {BORDER: 1px solid;  COLOR: black; width: {{Width *adjust}}px; height:{{Height*adjust}}px; border: 1px solid black;padding: 0;margin: 0;float: left; background-color:white;}
-				.btnBlank {BORDER: 1px solid;  COLOR: black; width: {{Width *adjust -2}}px; height:{{Height *adjust -2}}px; border: 1px solid black;padding: 0;margin: 0;float: left; background-color:black;}
+				.crossword-board__item {BORDER: 1px solid;  COLOR: black; width: {{Width *adjust}}px; height:{{Height*adjust}}px; border: 1px solid black;padding: 0;margin: 0;float: left; background-color:white;}
+				.crossword-board__item-Blank {BORDER: 1px solid;  COLOR: black; width: {{Width *adjust -2}}px; height:{{Height *adjust -2}}px; border: 1px solid black;padding: 0;margin: 0;float: left; background-color:black;}
 				</style>
 				{% if solutions[i] != '.' %}
 					<!-- 
 					- The "item"-prefix is used to identify each square.
 					- minlength and maxlength are for the lengths of legal text-entries for squares (black squares don't have entries).
 				    - "required" specifies that the box must be filled in before submitting the form-->
-					<input class=btn id="item{{i // Height + 1}}-{{i % Width + 1}}"  type="text" minlength="1" maxlength="1" required="required" type="text"> </input>
+				    <!-- YOU NEED TO CHANGE THE pattern="^[sS]{1}$" TO BE SPECIFIC TO EACH LETTER!!! -->
+					<input id="item{{i // Height + 1}}-{{i % Width + 1}}"  class="crossword-board__item" type="text" minlength="1" maxlength="1" pattern="^[{{solutions[i]}}{{lcSolutions[i]}}]{1}$" required="required" value=""> </input>
 				{% else %}
-					<div class=btnBlank id="item{{i // Height + 1}}-{{i % Width + 1}}" required="required"> </div>
+					<div class=crossword-board__item-Blank id="item{{i // Height + 1}}-{{i % Width + 1}}" required="required"> </div>
 				{% endif %}
 			{% endfor %}
-		</div>
-			
+
 
 
     <!-- input elements go here. Uses CSS Grid as its layout -->
 
-	    <div class="crossword-board crossword-board--highlight crossword-board--highlight--across">
-	      <!-- highlights for valid 'across' answers go here. Uses CSS Grid as its layout -->
-	    </div>
+		    <div class="crossword-board crossword-board--highlight crossword-board--highlight--across">
+		      <!-- highlights for valid 'across' answers go here. Uses CSS Grid as its layout -->
+		      <span id="across-1" class="crossword-board__item-highlight crossword-board__item-highlight--across-1"></span>
+		    </div>
 
-	    <div class="crossword-board crossword-board--highlight crossword-board--highlight-down">
-	      <!-- highlights for valid 'down' answers go here. Uses CSS Grid as its layout -->
-	    </div>
+		    <div class="crossword-board crossword-board--highlight crossword-board--highlight-down">
+		      <!-- highlights for valid 'down' answers go here. Uses CSS Grid as its layout -->
+		    </div>
 
-	    <div class="crossword-board crossword-board--labels">
-	      <!-- row and column number labels go here. Uses CSS Grid as its layout -->
-	    </div>
-
-
-
-
-    <!-- CLUES OF THE CROSSWORD PUZZLE:  -->
-	    <div class="crossword-clues">
-
-	      	<!-- ACROSS CLUES	 -->
-	      	<dl class="crossword-clues__list crossword-clues__list--across">
-				<h1 id="clue-title"> ACROSS </h1>
-				<ol id="acrossList">
-			    	<!-- across-clues will end up here -->
-			    	{% for x in across %}
-			    	<li> {{ x['clue'] }} </li>
-			    	{% endfor %}
-				</ol>       
-		  	</dl>
+		    <div class="crossword-board crossword-board--labels">
+		      <!-- row and column number labels go here. Uses CSS Grid as its layout -->
+		    </div>
 
 
-		  	<!-- DOWN CLUES -->
-	      	<dl class="crossword-clues__list crossword-clues__list--down">
-	       		<h1 id="clue-title"> DOWN </h1>
-				<ol  id="downList">
-				    <!-- down-clues will end up here -->
-				    {% for x in down %}
-				    <li> {{ x['clue'] }} </li>
-				    {% endfor %}
-				</ol>
-	      	</dl>
 
-	    </div>
 
-  	</div>
+    <!-- CLUES:  -->
+		    <div class="crossword-clues">
 
-</div>
+		      	<!-- ACROSS CLUES	 -->
+		      	<dl class="crossword-clues__list crossword-clues__list--across">
+					<dt id="clue-title"> ACROSS </dt>
+	 			    	<!-- across-clues will end up here -->
+				    	{% for x in across %}
+						<!-- CHANGE "across-1" to "across-..." -->
+				    	<dd class="crossword-clues__list-item crossword-clues__list-item--across-{{x['num']}}" data-number="{{x['num']}}"> {{ x['clue'] }} </dd>
+				    	{% endfor %}
+	 		  	</dl>
+
+
+			  	<!-- DOWN CLUES -->
+		      	<dl class="crossword-clues__list crossword-clues__list--down">
+		       		<dt id="clue-title"> DOWN </dt>
+					    <!-- down-clues will end up here -->
+					    {% for x in down %}
+					    <dd class="crossword-clues__list-item crossword-clues__list-item--down-{{x['num']}}" data-number="{{x['num']}}"> {{ x['clue'] }} </dd>
+					    {% endfor %}
+		      	</dl>
+		 	 </div>	<!-- crossword-clues -->
+	    </div> <!-- board -->	    
+  	</div> <!-- crossword-board -->
+
+</div> <!-- crossword-board-container -->
 
 	</body>
 
-  <script type="/Users/gtrost/Documents/CW/templates/js/jquery-3.4.1.js"></script>
-  <script src="./js/CW.js"></script>
+  <!-- <script type="/Users/gtrost/Documents/CW/templates/js/jquery-3.4.1.js"></script> -->
+  <!-- <script src="./js/CW.js"></script> -->
 
   <!-- <footer id="copyright">{{copyright}}</footer> -->
 
