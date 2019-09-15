@@ -32,9 +32,10 @@ Then open in your web browser `http://127.0.0.1:5000/`.
 ![](images/readmePhoto.png)
 
 ## Future Work
-#. Support multi-user interaction on the same crossword 
-#. Support multiple-crossword use for the same user
-#. Host this on website
+
+1. Support multi-user interaction on the same crossword 
+1. Support multiple-crossword use for the same user
+1. Host this on website
 
 ## Testing
 This project so far is mostly an interface to an existing library. Therefore, all tests have been manual. To perform manual tests, do the following: For each `.puz` file in `/testfiles`, move the name of the `.puz` file into `applications.py` on line 12. Run the application and visually confirm that the crossword puzzle looks like the image in this `README`. 
