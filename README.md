@@ -1,17 +1,43 @@
 # CrosswordsInteractive
-[IN THE WORKS] This is a front and back-end project for a crossword puzzle website, using HTML, Python, Jinja and Flask.
 
-This project began in December, 2018 and is still on-going. 
+## Goals
+
+This is a work in progress front and back-end project for a crossword puzzle website, using HTML, Python, Jinja and Flask.
+
 It will become an interactive crossword site where multiple people may fill in a crossword simultaneously from different computers. 
 
-**Important files:**
-  1. applications.py : The main python application file, linked to puz.py 
-  2. CW.html : The main html file
-  3. puz.py : Crossword parser, taken from alexdef/puzpy, found here https://github.com/alexdej/puzpy/blob/master/puz.py
-  CW.html : main html page
+## Running this application
 
-**Example:**
+### Requirements
+
+* Python 3.4+ 
+
+```
+pip install Flask==1.1.1
+pip install puzpy==0.2.5
+```
+
+### Running this application
+
+```
+FLASK_APP=application.py FLASK_RUN_PORT=5000 flask run --host=0.0.0.0
+```
+Then open in your web browser `http://127.0.0.1:5000/`. 
+
+## Architecture
+  1. `applications.py` : The main Python application file. Starts a Flask application and initiates a crossword.
+  2. `templates/CW.html` : The main HTML file. Displays the crossword puzzle, clues and correct-answer checker. 
+
+## Example 
 ![](images/readmePhoto.png)
 
-**Testing:** 
-Some puzzles (.puz files) are available in the /testfiles folder. These puzzles allow for integration testing. The project defaults to using 15by15.puz, which exists in /testfiles. To test different puzzles, you can go to applications.py and edit line 12 ("p = puz.read('testfiles/15by15.puz'") by inserting the name of your prefered .puz file over "15by15.puz".
+## Future Work
+
+1. Support multi-user interaction on the same crossword 
+1. Support multiple-crossword use for the same user
+1. Host this on website
+
+## Testing
+This project so far is mostly an interface to an existing library. Therefore, all tests have been manual. To perform manual tests, do the following: For each `.puz` file in `/testfiles`, move the name of the `.puz` file into `applications.py` on line 12. Run the application and visually confirm that the crossword puzzle looks like the image in this `README`. 
+
+As this project expands, new features will demand unit and integration tests.
