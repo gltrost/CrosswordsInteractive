@@ -14,6 +14,7 @@ It will become an interactive crossword site where multiple people may fill in a
 
 ```
 pip install Flask==1.1.1
+pip install puzpy==0.2.5
 ```
 
 ### Running this application
@@ -21,14 +22,14 @@ pip install Flask==1.1.1
 ```
 FLASK_APP=application.py FLASK_RUN_PORT=5000 flask run --host=0.0.0.0
 ```
+Then open in your web browser `http://127.0.0.1:5000/`. 
 
 ## Architecture
-  1. `applications.py` : The main Python application file, linked to puz.py 
-  2. `CW.html` : The main HTML file
-  3. `puz.py` : Crossword parser, taken from [`alexdef/puzpy`](https://github.com/alexdej/puzpy/blob/master/puz.py).
+  1. `applications.py` : The main Python application file. Starts a Flask application and initiates a crossword.
+  2. `templates/CW.html` : The main HTML file. Displays the crossword puzzle, clues and correct-answer checker. 
 
 ## Examplex
 ![](images/readmePhoto.png)
 
 ## Testing
-Some puzzles (.puz files) are available in the /testfiles folder. These puzzles allow for integration testing. The project defaults to using 15by15.puz, which exists in /testfiles. To test different puzzles, you can go to applications.py and edit line 12 ("p = puz.read('testfiles/15by15.puz'") by inserting the name of your prefered .puz file over "15by15.puz".
+This project so far is mostly an interface to an existing library. Therefore, all tests have been manual. To perform manual tests, do the following: For each `.puz` file in `/testfiles`, move the name of the `.puz` file into `applications.py` on line 12. Run the application and visually confirm that the crossword puzzle looks like the image in this `README`. 
