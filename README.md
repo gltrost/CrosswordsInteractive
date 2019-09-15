@@ -6,7 +6,7 @@ It will become an interactive crossword site where multiple people may fill in a
 
 **Important files:**
   1. applications.py : The main python application file, linked to puz.py 
-	2. CW.html : The main html file
+  2. CW.html : The main html file
   3. puz.py : Crossword parser, taken from alexdef/puzpy, found here https://github.com/alexdej/puzpy/blob/master/puz.py
   CW.html : main html page
 
