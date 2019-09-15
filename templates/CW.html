@@ -85,6 +85,21 @@ methods called from puz.py :
 			.crossword-board__item-highlight--across-1 {
 			opacity: 1;
 			}
+
+		/*NUMBERING SPECS*/
+		/*.crossword-board__item-label {
+			position: relative;
+		}*/
+		.crossword-board__item-label-text {
+			position: absolute;
+			top: 2px;
+			left: 2px;
+			font-size: 14px;
+			line-height: 1;
+		}
+		.crossword-board__item-label--1 {
+			grid-column: 1/1;
+		}
  
 		
 		/*CLUE SPECS*/
@@ -141,6 +156,10 @@ methods called from puz.py :
 					content: attr(data-number) '. ';
 				}
 
+			#numbers{
+				font-size: 3pt;
+				position: absolute;
+			}
 
 			{% for i in range(0,listSize) %}
  			#item{{i // Height + 1}}-{{i % Width + 1}}:active  ~ .crossword-clues .crossword-clues__list-item--across-1,
@@ -206,7 +225,6 @@ methods called from puz.py :
 					- The "item"-prefix is used to identify each square.
 					- minlength and maxlength are for the lengths of legal text-entries for squares (black squares don't have entries).
 				    - "required" specifies that the box must be filled in before submitting the form-->
-				    <!-- YOU NEED TO CHANGE THE pattern="^[sS]{1}$" TO BE SPECIFIC TO EACH LETTER!!! -->
 					<input id="item{{i // Height + 1}}-{{i % Width + 1}}"  class="crossword-board__item" type="text" minlength="1" maxlength="1" pattern="^[{{solutions[i]}}{{lcSolutions[i]}}]{1}$" required="required" value=""> </input>
 				{% else %}
 					<div class=crossword-board__item-Blank id="item{{i // Height + 1}}-{{i % Width + 1}}" required="required"> </div>
@@ -228,6 +246,7 @@ methods called from puz.py :
 
 		    <div class="crossword-board crossword-board--labels">
 		      <!-- row and column number labels go here. Uses CSS Grid as its layout -->
+		      <span id="label-1" class="crossword-board__item-label crossword-board__item-label--1"><span class="crossword-board__item-label-text">1</span></span>
 		    </div>
 
 
