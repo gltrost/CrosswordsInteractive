@@ -26,7 +26,9 @@ Then open in your web browser `http://127.0.0.1:5000/`.
 
 ## Architecture
   1. `applications.py` : The main Python application file. Starts a Flask application and initiates a crossword.
-  2. `templates/CW.html` : The main HTML file. Displays the crossword puzzle, clues and correct-answer checker. 
+  2. `utilities.py` : A Python folder containing various functions needed for the crossword puzzle that weren't available in `puzpy`.
+  3. `templates/CW.html` : The main HTML file. Displays the crossword puzzle, clues and correct-answer checker.
+  4. `static/styles.css` : The main styling-sheet for the HTML file. 
 
 ## Example 
 ![](images/readmePhoto.png)
