@@ -7,26 +7,26 @@ methods called from puz.py :
    Width: width of board
    solutions: list of solutions
    author: creator of puzzle
-   copyright: any copyright information -->
+   copyright: any copyright information 
+   adjust : alters board size depending on dimensions of the board
+   mergeNumberings : all the numbers to be displayed in the top
+   		corners of squares in order
+   acrossSets : assigns each across clue to its squares
+-->
 
+<meta http-equiv="cache-control" content="no-cache" />
 
 <style>
 
-/*The following is the styling the requires Jinja. All the other styling is contained in static/styles.css */
+/*The following is the styling the requires Jinja. All the other styling is 
+contained in static/styles.css */
 	{% for i in range(0,listSize) %}
 	#nums{{i}}{
 		position: absolute;
-		top: {{159 + (37.5* (i // Height + 1))}}px;
+		top: {{177 + (37.5* (i // Height + 1))}}px;
 		left: {{(37.5 * (i % Width + 1)) - 25}}px;
 	}
 	{% endfor %}
-
-/*	{% for i in range(0,listSize) %}
-	#item{{i // Height + 1}}-{{i % Width + 1}}:active  ~ .crossword-clues .crossword-clues__list-item--across-1,
-	#item{{i // Height + 1}}-{{i % Width + 1}}:focus  ~ .crossword-clues .crossword-clues__list-item--across-1,
-	#item{{i // Height + 1}}-{{i % Width + 1}}:hover  ~ .crossword-clues .crossword-clues__list-item--across-1 {
-		background-color: #ffff74;}
-	{% endfor %}*/
 
 	{% for i in range(0,numAcrossClues) %}
 		{% for j in range(0,across[i]['len'])%}
@@ -42,8 +42,33 @@ methods called from puz.py :
 		#item{{acrossSets[i]['aList'][j]}}:valid ~
 		{% endfor %}
 		.crossword-board--highlight
-		.crossword-board__item-highlight--across-{{acrossSets[i]['aNum']}} {opacity: 1;}
+		.crossword-board__item-highlight--across-{{acrossSets[i]['aNum']}} {
+			opacity: 1;}
 	{% endfor %}
+
+	{% for i in range(0,numDownClues) %}
+		{% for j in range(0,down[i]['len'])%}
+	#item{{downSets[i]['dList'][j]}}:active  ~ .crossword-clues .crossword-clues__list-item--down-{{downSets[i]['dNum']}},
+	#item{{downSets[i]['dList'][j]}}:focus  ~ .crossword-clues .crossword-clues__list-item--down-{{downSets[i]['dNum']}},
+	#item{{downSets[i]['dList'][j]}}:hover  ~ .crossword-clues .crossword-clues__list-item--down-{{downSets[i]['dNum']}} {
+		background-color: #ffff74;}
+		{% endfor %}
+	{% endfor %}
+
+	{% for i in range(0,numDownClues) %}
+		{% for j in range(0,down[i]['len'])%}
+		#item{{downSets[i]['dList'][j]}}:valid ~
+		{% endfor %}
+		.crossword-board--highlight
+		.crossword-board__item-highlight--down-{{downSets[i]['dNum']}} {
+			opacity: 1;}
+	{% endfor %}
+
+	.crossword-clues__list--down {
+		left: 1200px;
+		position: absolute;
+		}	
+
 
 </style>
 
@@ -51,7 +76,7 @@ methods called from puz.py :
 
 	<head>
 		<title> {{title}} </title>
-		<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+		<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 	</head>
 
 <body>
@@ -103,7 +128,6 @@ methods called from puz.py :
 
 		    <div class="crossword-board crossword-board--labels">
 		      <!-- row and column number labels go here. Uses CSS Grid as its layout -->
-		      <span id="label-1" class="crossword-board__item-label crossword-board__item-label--1"><span class="crossword-board__item-label-text">1</span></span>
 		    </div>
 
 

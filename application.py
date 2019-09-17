@@ -14,27 +14,30 @@ numbering = p.clue_numbering()
 
 app = Flask(__name__)
 
-# adjuster : 
-# takes in a crossword width and returns a value to 
-# adjust the size of the board, allowing for large, medium and small 
-# puzzles to all occupy approximately the same size on the screen 
 
-
-# METHODS CALLED FROM puz.py :
+# METHODS CALLED FROM puz.py:
 #    title: title of crossword
 #    across: across clues
 #    down: down clues
 #    Height: height of board
 #    Width: width of board
 #    solutions: list of solutions
-#    lcSolutions : solutions in all lower-case (needed for pattern matching right answers)
+#    lcSolutions : solutions in all lower-case 
+#        (needed for pattern matching right answers)
 #    author: creator of puzzle
 #    copyright: any copyright information
+
+# METHODS CALLED FROM utilities.py:
+#    adjuster : alters board size depending on dimensions of the board
+#    mergeNumberings : gathers all the numbers to be displayed in the top
+#         corners of squares in order
+#    assignLetterToAcrossClue : assigns each across clue to its squares
 @app.route('/')
 def index():
    return render_template('CW.html', title=p.title ,marks = 10, 
                         across= numbering.across,
                         numAcrossClues = len(numbering.across),
+                        numDownClues = len(numbering.down),                        
                         down= numbering.down, 
                         Height = p.height, 
                         Width = p.width,
@@ -45,7 +48,8 @@ def index():
                         copyright = p.copyright,
                         adjust = adjuster(p.width),
                         numbers = mergeNumberings(p),
-                        acrossSets = assignLetterToAcrossClue(p))   
+                        acrossSets = assignLetterToAcrossClue(p),
+                        downSets = assignLetterToDownClue(p))   
 
 
 if __name__ == '__main__':
