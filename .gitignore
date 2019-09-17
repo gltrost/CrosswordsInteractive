@@ -1,4 +1,5 @@
 # Don't track content of these folders:
+static/styles/
 templates/js/
 templates/puzpy-master/
 templates/.DS_Store
@@ -20,3 +21,5 @@ mine.puz
 *.in
 LICENSE
 .DS_Store
+puz.py
+utilities.pyc
